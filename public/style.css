@@ -1,0 +1,145 @@
+body{
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*THIS IS THE HEADER SECTION */
+.header{
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border-bottom: 1px solid black;
+    background-color: rgb(59, 55, 55)
+
+}
+.header ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    text-decoration: none;
+    outline: none;
+    list-style-type: none;
+}
+
+.navbarelements{
+    margin: 0 10vh;
+    color: white;
+    text-decoration: none;
+}
+
+/*THIS IS THE MAIN CONTENT SECTION*/
+
+
+.MainContent{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+.calendarsection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vw;
+    width: 80vw;
+    box-sizing: border-box;
+    padding: 0rem 10rem;
+    padding-top: 0px;
+    border: 1px solid blue;
+}
+.monthtitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 80%;
+}
+
+.weekdatesection{
+    width: 80%;
+    height: 80%;
+    justify-content: space-between;
+    border: 10px solid black;
+}
+
+.daysoftheweek{
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 14.28%;
+
+}
+
+.datesection{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+}
+
+.dates{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid gray;
+    margin: 0 1%;
+    width: 11.28%;
+    box-sizing: border-box;
+    height: 11.28%;
+    border-radius: 50%;
+}
+
+.dates:hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 100;
+    border: 2px solid gray;
+    margin: 0 1%;
+    width: 11.28%;
+    box-sizing: border-box;
+    height: 11.28%;
+    transition-duration: 0.5s;
+    background-color: rgb(113, 173, 129);
+}
+
+.deaddate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0%;
+    border: 2px solid white;
+    margin: 1%;
+    width: 11.28%;
+    box-sizing: border-box;
+    height: 11.28%;
+    border-radius: 50%;
+    background-color: white;
+}
+
+
+
+#numberdate{
+    align-self: center;
+    font-weight: 2rem;
+    font-size: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+}
