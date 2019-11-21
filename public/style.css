@@ -11,6 +11,7 @@ body{
 }
 
 /*THIS IS THE HEADER SECTION */
+
 .header{
     position: fixed;
     width: 100vw;
@@ -39,100 +40,157 @@ body{
 
 /*THIS IS THE MAIN CONTENT SECTION*/
 
-
 .MainContent{
     margin-top: 5vh;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     height: 100vh;
     width: 100vw;
 }
 
+.middle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+    .middle hr{
+        width: 90%;
+    }
 
 .calendarsection{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80vw;
-    width: 80vw;
+    height: 40vw;
+    width: 50vw;
     box-sizing: border-box;
-    padding: 0rem 10rem;
-    padding-top: 0px;
-    border: 1px solid blue;
+    padding: 0rem 10rem 2rem;
+    background-color: tan;
+    border-radius: 1%;
+    -webkit-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+    -moz-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+    box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
 }
 .monthtitle{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 80%;
+    width: 45vw;
+
 }
+
+        .monthtitle h2{
+            width: 20%;
+
+        }
+        .monthtitle ul{
+            align-self: flex-end;
+            width: 80%;
+            height: 75%;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .monthtitle li{
+            width: 33%;
+        }
+            #dateicon{
+                color: rgba(0, 0, 0, 0%);
+                border-bottom: 1px solid red;
+                width: 5px;
+                margin-right: 5px;
+            }
+            #dateicon::after{
+                content: "";
+                display: inline;
+                background-color:red;
+                height: 6px;
+                width: 3px;
+            }
+            .monthtitle i{
+                margin-right: 10px;
+            }
+            .monthtitle .fa-calendarweek{
+                color: blue;
+            }
+
 
 .weekdatesection{
-    width: 80%;
-    height: 80%;
-    justify-content: space-between;
-    border: 10px solid black;
-}
-
-.daysoftheweek{
-    margin-bottom: 2%;
-    display: flex;
-    justify-content: space-between;
-    flex-basis: 14.28%;
-
-}
-
-.datesection{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
+    width: 45vw;
     height: 100%;
-    border: 1px solid red;
+    justify-content: space-around;
+    border-left: 1px solid gray;
+
 }
 
-.dates{
+
+.datecolumns{
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 14.28%;
+    height: 100%;
+
+}
+
+.dayoftheweek{
+    height: 10%;
+
+}
+
+.individualdates{
+    align-items: center;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+}
+
+.dates, .deaddate{
+    display: flex;
+    border-bottom: 1px solid gray;
+    width: 250%;
+    padding: 80% 0;
+    /* display: flex;
     justify-content: center;
-    align-items: flex-start;
-    border: 2px solid gray;
-    margin: 0 1%;
-    width: 11.28%;
-    box-sizing: border-box;
-    height: 11.28%;
-    border-radius: 50%;
+    border: 3px solid gray;
+    width: 250%;
+    padding: 80% 0;
+    border-radius: 50%; */
+}
+
+.dates::after{
+    content: "";
+    display: inline;
+    background-color:gray;
+    height: 100%;
+    width: 1px;
+    margin-left: 60%;
 }
 
 .dates:hover{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 100;
-    border: 2px solid gray;
-    margin: 0 1%;
-    width: 11.28%;
-    box-sizing: border-box;
-    height: 11.28%;
-    transition-duration: 0.5s;
-    background-color: rgb(113, 173, 129);
+    border-bottom: 1px solid gray;
+    width: 250%;
+    padding: 80% 0;
+    background-color: rgba(168, 66, 50, 20%);
+    transition-duration: 0.75s;
+
 }
 
 .deaddate{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 0%;
-    border: 2px solid white;
-    margin: 1%;
-    width: 11.28%;
-    box-sizing: border-box;
-    height: 11.28%;
-    border-radius: 50%;
-    background-color: white;
 }
 
 

@@ -1,0 +1,30 @@
+ul{
+    list-style: none;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid gray;
+    height: 50vh;
+    width: 20%;
+    margin-left: 4vh;
+    align-items: center;
+
+}
+    .left ul{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        border-left: 1px solid black;
+    }
+
+.right{
+    width: 20%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    margin-right: 4vh;
+    border-left: 1px solid gray;
+
+}
