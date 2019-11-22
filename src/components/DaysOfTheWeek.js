@@ -11,24 +11,24 @@ class DaysOfTheWeek extends React.Component{
 
     render(){
 
-        const dateList = this.props.data.dates.map(date=>{
+        const dateList = this.props.data.dates.map((date, index)=>{
             const yoyo = date;
-            console.log(yoyo)
             if(date < 0){
                 return(
-                <span className="deaddate">{date}</span>
+                <span key={index} className="deaddate">{date}</span>
                 )
             } else{
                 let blahblah = new Date ()
                 let todayy = blahblah.getDate()
 
-                if (yoyo.props.children === todayy){
+                if (yoyo === todayy){
                     return(
-                            <span style={{borderColor: "rgb(168, 66, 50)"}} className="dates">{date}</span>
+                            <span key={index} style={{color: "red",
+                            borderColor: "rgb(168, 66, 50)"}} className="dates">{date}</span>
                     )
                 } else{
                     return(
-                            <span className="dates">{date}</span>
+                            <span key={index} className="dates">{date}</span>
                 )
                 }
             }

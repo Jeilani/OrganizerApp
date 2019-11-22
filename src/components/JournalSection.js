@@ -3,7 +3,13 @@ import React from "react"
 function JournalSection (){
     return(
      <div className="right">
-         <h1>Journal</h1>
+        <header>
+            <h2>Journal</h2>
+            <i class="fas fa-pencil-alt"></i>
+        </header>
+        <p>
+            blah blah blah
+        </p>
      </div>
     )
 
