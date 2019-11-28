@@ -1,6 +1,6 @@
 import React from "react"
-import Header from "./components/Header.js"
-import MainContent from "./components/MainContent"
+import Header from "./functionalComponents/Header.js"
+import MainContent from "./functionalComponents/MainContent"
 
 
 class App extends React.Component{

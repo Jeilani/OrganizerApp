@@ -1,0 +1,31 @@
+.header{
+    text-decoration: none;
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    background-color: rgb(52, 54, 54)
+
+}
+hr{
+    background-color: rgb(52, 54, 54);
+    color: rgb(52, 54, 54);
+    border: 1px solid rgb(52, 54, 54);
+
+}
+.header ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    text-decoration: none;
+    outline: none;
+    list-style-type: none;
+}
+
+.navbarelements{
+    margin: 0 10vh;
+    color: white;
+    text-decoration: none;
+}
