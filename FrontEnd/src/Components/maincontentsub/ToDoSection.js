@@ -1,36 +1,20 @@
 import React from "react"
 import "../../CSSFiles/ToDo.css"
+import FirstTodos from "./todosectionsub/FirstTodos"
+import SecondTodos from "./todosectionsub/SecondTodos"
 
-function ToDoSection(){
-    return(
-        <div className="left">
-            <div className="firstlistcontainer listcontainer">
-                <ul>
-                    <h5>Day's Schedule</h5>
-                    <li>Playing basketball</li>
-                </ul>
-                <ul>
-                    <h5>Tasks Completed</h5>
-                </ul>
+class ToDoSection extends React.Component{
+    constructor(props){
+        super()
+    }
+    render(){
+        return(
+            <div className="left">
+                <FirstTodos clickedDate={this.props.clickedDate}/>
+                <SecondTodos clickedDate={this.props.clickedDate}/>
             </div>
-            <hr></hr>
-            <hr id="vertical"></hr>
-            <div className="listcontainer">
-                <ul>
-                    <h5>Long Term Todo's</h5>
-                    <li>Meetup at Code Talent</li>
-                    <li>Coffee with someone</li>
-                </ul>
-                <ul>
-                    <h5>Upcoming Events</h5>
-                    <li>Wedding April 3</li>
-                    <li>Nuggets Game Dec. 24</li>
-                </ul>
-            </div>
-        </div>
-    )
-
-
+        )
+    }
 }
 
 

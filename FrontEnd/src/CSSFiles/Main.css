@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+body{
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', cursive;
+    background-color: rgb(254, 204, 102 );
+}
+
+ul{
+    list-style: none;
+}
+
+.WholePage{
+    display: flex;
+    flex-direction: column;
+    height: 110vh;
+    width: 100vw;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#datesign{
+    position: absolute;
+    opacity: 50%;
+    top: 7vh;
+    left: 2vw;
+    background-color:rgb(128, 0, 0);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+#datesign:hover{
+    position: absolute;
+    opacity: 100%;
+    top: 7vh;
+    left: 2vw;
+    background-color:rgb(128, 0, 0);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.zoom:hover{
+    height: 5vh;
+}

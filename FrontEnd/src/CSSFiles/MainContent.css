@@ -1,10 +1,12 @@
+
+
 .MainContent{
-    margin-top: 5vh;
+
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: 100vh;
+    height: 80%;
     width: 100vw;
 }
 
@@ -28,9 +30,9 @@
     padding: 0rem 10rem 2rem;
     background-color: tan;
     border-radius: 1%;
-    -webkit-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+    /* -webkit-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
     -moz-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
-    box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+    box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55); */
 }
 .monthtitle{
     display: flex;
@@ -150,6 +152,11 @@
 
 }
 
+.dates{
+    transition-duration: 0.5s;
+}
+
+
 .dates, .deaddate{
     display: flex;
     font-weight: 10px;
@@ -157,6 +164,7 @@
     width: 250%;
     padding: 80% 0;
     justify-content: space-around;
+
 
 }
     .dateIcon{
@@ -181,7 +189,7 @@
 
     .dates:hover{
         display: flex;
-        border-bottom: 2px solid black;
+        border: none;
         width: 250%;
         padding: 80% 0;
         font-weight: bold;

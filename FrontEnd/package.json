@@ -1,21 +1,26 @@
 {
   "name": "organizerapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is an app that is designed one to help organize their life",
   "main": "]",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "react-scripts test",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "author": "Jeilani Mohamed",
   "license": "ISC",
   "dependencies": {
+    "fibers": "^4.0.2",
+    "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "^3.2.0"
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.3.0",
+    "react-transition-group": "^4.3.0",
+    "sass": "^1.23.7",
+    "typescript": "^3.7.3"
   },
   "browserslist": {
     "production": [

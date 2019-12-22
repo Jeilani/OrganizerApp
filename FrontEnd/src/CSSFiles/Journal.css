@@ -1,49 +1,95 @@
-@import url('https://fonts.googleapis.com/css?family=Kalam:300&display=swap');
 
-.right{
+#paper {
     width: 20%;
-    align-items: center;
+    height: 75vh;
+    position: relative;
+    border-radius: 3%;
+    margin: 20px auto;
+    background-color: white;
+    /* -webkit-box-shadow: -9px -9px 0px 12px rgba(0,0,0,1);
+    -moz-box-shadow: -9px -9px 0px 12px rgba(0,0,0,1);
+    box-shadow: -9px -9px 0px 12px rgba(0,0,0,1); */
+}
+
+/* styling red vertical line */
+#paper::before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    background-color: rgba(255,0,0,0.6);
+    z-index: 1;
+}
+
+/* styling blue horizontal lines */
+#pattern {
+    position: absolute;
+    height: 75%;
+    width: 100%;
+    margin-top: 20%;
+    z-index: -0;
+    background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
+}
+
+/* styling text content */
+
+.bodyjournal{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 70vh;
-    margin-right: 4vh;
-    font-family: 'Kalam', cursive;
-    border-radius: 3%;
-    background-color: rgb(182, 178, 237);
-    -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-    -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-    box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-
+    align-items: center;
 }
-    .right header{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin-left: 10px;
-    }
-        .right h2{
-            margin-right: 10px;
-        }
 
-    .right form{
-        background-color: rgb(182, 178, 237);
-        width: 80%;
-        line-height: 2rem;
-        font-family: 'Kalam', cursive;
-        overflow: scroll;
-    }
+.journalHeader{
+    width: 100%;
+    height: 8.5%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    justify-content: flex-start;
+}
+.journalHeader i{
+    margin-bottom: 0;
+}
 
-    form textarea {
-        background-color: rgb(182, 178, 237);
-        font-family: 'Kalam', cursive;
-        outline: none;
-        font-size: 1rem;
-        border: none;
-        width: 100%;
-        height: 500px;
-        word-break: keep-all;
-        hyphens: auto;
-        line-break: strict;
-        text-wrap: balance;
-    }
+.journalHeader h4{
+    margin-top: 0;
+}
+
+.journalForm {
+    height: 85%;
+    width: 85%;
+    margin-left: 10%;
+    outline: none;
+    z-index: 2;
+}
+.journalForm textarea{
+    background-color: inherit;
+    border: 1px solid transparent;
+    outline: none;
+    margin: 0;
+    padding-left: 25px;
+    padding-right: 16px;
+    line-height: 25px;
+
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    resize: none;
+    height: 100%;
+    width: inherit;
+}
+
+footer{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10%;
+}

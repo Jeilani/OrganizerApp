@@ -1,24 +1,16 @@
 import React from "react"
-import Header from "./Components/Header.js"
-import MainContent from "./Components/MainContent"
-
+import {Route} from "react-router-dom"
+import Landing from "./Landing.js"
+import CalendarPage from "./CalendarPage"
 
 class App extends React.Component{
-    constructor(){
-        super()
-        this.state = {
-            currentUser: {
-
-            }
-        }
-    }
-
     render(){
         return(
-            <div id="container">
-                <Header/>
-                <MainContent />
-            </div>
+            <div>
+                <Route exact path = "/" component={Landing}></Route>
+                <Route exact path = "/home" component={Landing}></Route>
+                <Route exact path="/calendar" component={CalendarPage}></Route>
+           </div>
         )
     }
 }
