@@ -6,13 +6,21 @@ class Event extends React.Component{
         super(props)
         this.state={
             eventInput: "",
-            eventList: [
-                {
-                    name: "Wedding To Go",
-                    date: new Date (this.props.clickedDate.getFullYear(), this.props.clickedDate.getMonth(), this.props.clickedDate.getDate())
-                }
-            ]
         }
+    }
+
+    getUpcomingEvents = () =>{
+        fetch("/api/events")
+        .then(res=>{
+            if (!res.ok){
+                throw Error
+            }
+            return res.json()
+        })
+        .then()
+        .catch(err=>{
+            console.log(err)
+        })
     }
 
     handleChange = event =>{
@@ -21,41 +29,27 @@ class Event extends React.Component{
         })
     }
 
-    handleSubmit = event =>{
+    handleEventSubmit = event =>{
         event.preventDefault()
-
-        let hour = event.target.timestamp.value.substring(0, 2)
-        let minutes = event.target.timestamp.value.substring(3)
-        let year = this.props.clickedDate.getFullYear()
-        let month = this.props.clickedDate.getMonth()
-        let date = this.props.clickedDate.getDate()
-
-
-
-        this.setState(prevState=>{
-            let newObject = {
-                name: this.state.todoInputValue,
-                date: new Date (year, month, date, hour, minutes)
-            }
-            return {
-                todoInputValue: "",
-                todoList: [...prevState.todoList, newObject]
-            }
+        this.props.handleSubmit(event, "events", this.state.eventInput)
+        this.setState({
+            eventInput: ""
         })
     }
 
     render(){
-    const newEventList = this.state.eventList.map(event=><li>{event.name}</li>)
-        return (
+    const newEventList = this.props.events.map((event, index)=><li key={index}>{event.name}<i onClick = {()=>{this.props.handlePostAndDelete(event._id, "delete", "events")}} className="far fa-trash-alt"></i></li>)
+    return (
             <div className="event">
                 <div className="todaysevents">
-                    <h5>Todays Events</h5>
-                    <form>
+                    <h5>Clicked Day's Events</h5>
+                    <form onSubmit={this.handleEventSubmit}>
                         <input
                             placeholder="add event.."
                             value={this.state.eventInput}
                             onChange={this.handleChange}
                             required
+                            maxLength = "15"
                         ></input>
                         <button type="submit">submit</button>
                     </form>
@@ -64,7 +58,7 @@ class Event extends React.Component{
                     </ul>
                 </div>
 
-                <div className="middleiconcontainer"><i class="animate fas fa-power-off fa-5x"></i></div>
+                <div className="middleiconcontainer"><i className="animate fas fa-power-off fa-5x"></i></div>
 
                 <div className="upcomingevents">
                     <h5>Upcoming Events</h5>

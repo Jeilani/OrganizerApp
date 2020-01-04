@@ -1,7 +1,8 @@
 import React from "react"
 import {Route} from "react-router-dom"
 import Landing from "./Landing.js"
-import CalendarPage from "./CalendarPage"
+import MainContent from "./Components/MainContent"
+
 
 class App extends React.Component{
     render(){
@@ -9,7 +10,7 @@ class App extends React.Component{
             <div>
                 <Route exact path = "/" component={Landing}></Route>
                 <Route exact path = "/home" component={Landing}></Route>
-                <Route exact path="/calendar" component={CalendarPage}></Route>
+                <Route exact path="/calendar" component={MainContent}></Route>
            </div>
         )
     }

@@ -46,6 +46,13 @@
         box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
         margin-bottom: 10px; */
     }
+    .firstlistcontainer:hover{
+     -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+    box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+    margin-bottom: 10px;
+    transition-duration: 0.5s;
+    }
 
             .firstlistcontainer h5{
                 z-index: 1;
@@ -59,7 +66,10 @@
                 height: 100%;
                 text-align: center;
             }
-
+            ::-webkit-scrollbar {
+                width: 0px;  /* Remove scrollbar space */
+                background: transparent;  /* Optional: just make scrollbar invisible */
+            }
             .completedlistitems{
                 text-decoration: line-through;
             }
@@ -75,8 +85,16 @@
                 align-items: center;
                 text-align: center;
             }
-            #timestamp{
-                font-weight: 700;
+            .timestamp{
+                width: 20%;
+                margin-right: 2%;
+                font-weight: bold;
+            }
+            .liname{
+                width: 68%;
+            }
+            .liicons{
+                width: 20%;
             }
                 .checkmark:hover{
                     color: red;
@@ -105,13 +123,14 @@
                 .firstForm button {
                     margin-top: 0;
                     background-color: rgb(49, 127, 196);
-
                     color: white;
-                    border-radius: 5px;
+                    border-radius: 20px;
+                    opacity: 50%;
 
                 }
                     .firstForm button:hover {
                         background-color: rgb(149, 237, 168);
+                        border: none;
 
                     }
 
@@ -124,6 +143,12 @@
         /* -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
         -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
         box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75); */
+    }
+    .secondlistcontainer:hover{
+        -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        transition-duration: 0.5s;
     }
         .secondlistcontainer form{
             margin-top: 0;
@@ -143,9 +168,20 @@
                 text-align: center;
                 background-color: rgb(49, 127, 196);
                 margin-bottom: 5px;
+                border-radius: 20px;
+                height: 50%;
+                opacity: 50%;
             }
                 .secondlistcontainer button:hover{
                     text-align: center;
                     background-color: rgb(245, 187, 71);
-
+                    border: rgb(245, 187, 71);
                 }
+            .secondlistdiv{
+                margin-top: 5%;
+                z-index: 1;
+                overflow-y: scroll;
+                width: 80%;
+                height: 100%;
+                text-align: center;
+            }

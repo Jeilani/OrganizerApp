@@ -13,6 +13,7 @@ class JournalSection extends React.Component{
     }
 
     handleInputChange = event=>{
+        
         this.setState({
             inputValue: event.target.value
         })
@@ -24,7 +25,6 @@ class JournalSection extends React.Component{
             <form className="journalForm">
                 <textarea
                     readOnly="true"
-                    placeholder="type here.."
                     value={this.state.inputValue}
                     onChange={this.handleInputChange}
                 >
@@ -56,13 +56,11 @@ class JournalSection extends React.Component{
     }
 
     handleIcon = () =>{
-        console.log("running handleIcon")
         if (this.state.ReadMode) {
             return(
             <i onClick={()=>{this.handleReadMode()}}className="fas fa-pen"></i>
             )
          }
-         console.log("false")
              return(
               <i onClick={()=>{this.handleReadMode()}}className="fas fa-check"></i>
              )

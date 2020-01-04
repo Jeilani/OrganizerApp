@@ -5,17 +5,31 @@ class FirstTodos extends React.Component {
         super(props)
     this.state = {
         todoInputValue: "",
-        todoDateValue: {},
-        todoList: [{
-            name: "play basketball",
-            date: new Date ()
-        }],
-        completedTodoList: []
     }
 }
+
+    handleChange = event =>{
+        this.setState({
+            todoInputValue: event.target.value
+        })
+    }
+
+    handleComplete = id =>{
+        this.props.handlePostAndDelete(id, "put", "daily")
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+        this.props.handleSubmit(event, "daily", this.state.todoInputValue)
+        this.setState({
+            todoInputValue: ""
+        })
+    }
+
     formatTime = date => {
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
+        var newdate = new Date(date)
+        var hours = newdate.getHours();
+        var minutes = newdate.getMinutes();
         var ampm = hours >= 12 ? 'pm' : 'am';
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
@@ -24,78 +38,19 @@ class FirstTodos extends React.Component {
         return strTime;
     }
 
-    handleChange = event =>{
-        this.setState({
-            todoInputValue: event.target.value
-        })
-    }
-
-    handleSubmit = event =>{
-        event.preventDefault()
-
-        let hour = event.target.timestamp.value.substring(0, 2)
-        let minutes = event.target.timestamp.value.substring(3)
-        let year = this.props.clickedDate.getFullYear()
-        let month = this.props.clickedDate.getMonth()
-        let date = this.props.clickedDate.getDate()
-
-
-
-        this.setState(prevState=>{
-            let newObject = {
-                name: this.state.todoInputValue,
-                date: new Date (year, month, date, hour, minutes)
-            }
-            return {
-                todoInputValue: "",
-                todoList: [...prevState.todoList, newObject]
-            }
-        })
-    }
-
-    handleTodoDelete = (todoListItem, type) =>{
-        this.setState(prevState=>{
-            let newArray = prevState.todoList.filter(listItem=>listItem !== todoListItem);
-
-            return {
-                todoList: newArray
-            }
-
-        })
-
-    }
-    handleCompletedTodoDelete = (todoListItem, type) =>{
-        this.setState(prevState=>{
-            let newArray = prevState.completedTodoList.filter(listItem=>listItem !== todoListItem);
-
-            return {
-                completedTodoList: newArray
-            }
-
-        })
-
-    }
-
-    handleCompleted = (todoListItem) =>{
-        this.setState(prevState=>{
-            let newArray = prevState.todoList.filter(listItem=>listItem !== todoListItem);
-
-            return {
-                todoList: newArray,
-                completedTodoList: [...prevState.completedTodoList, todoListItem]
-            }
-        })
-    }
 
 
     render(){
-        const sortedArray = this.state.todoList.sort((a, b)=>new Date(a.date) - new Date(b.date));
-        const todoList = sortedArray.map(t=><li><span id="timestamp">{this.formatTime(t.date)}</span>{t.name}<span><i onClick={()=>{this.handleCompleted(t)}}class="checkmark fas fa-check"></i><i onClick = {()=>{this.handleTodoDelete(t)}} class="far fa-trash-alt"></i></span></li>)
-        const completedTodoList = this.state.completedTodoList.map(t=><li>{t.name}<i onClick = {()=>{this.handleCompletedTodoDelete(t)}} class="far fa-trash-alt"></i></li>)
+        const firstMapList = this.props.daily.map(todo=>todo)
+        const firstTodoList = firstMapList.filter(todo=>!todo.completed)
+        const firstCompletedTodoList = firstMapList.filter(todo=>todo.completed)
+        const todoList = firstTodoList.map((t, index)=><li key={index}><b className="timestamp">{this.formatTime(t.date)}</b><span className="liname">{t.name}</span><span className="liicons"><i onClick={()=>{this.handleComplete(t._id)}} className="checkmark fas fa-check"></i></span></li>)
+        const completedTodoList = firstCompletedTodoList.map((t, index)=><li key={index}>{t.name}<i className="far fa-trash-alt"></i></li>)
+
         return (
             <div className="firstlistcontainer listcontainer">
                     <ul>
-                        <i class="far fa-clock"></i>
+                        <i className="far fa-clock"></i>
                         <h5>Day's Schedule</h5>
                         <div className="listitems">
                             {todoList}
@@ -106,21 +61,22 @@ class FirstTodos extends React.Component {
                                 type="text"
                                 value={this.state.todoInputValue}
                                 placeholder="add todo..."
-                                required>
+                                required
+                                maxLength = "15">
                             </input>
                             <input
                                 className="secondInput"
                                 type="time"
+                                required
                                 name="timestamp"
-                                required>
+                                >
                             </input>
-                            <button
-                                type="submit">submit</button>
+                            <button><i type="submit" onClick={this.handleSubmit} className="far fa-arrow-alt-circle-down"></i></button>
                         </form>
                     </ul>
 
                     <ul>
-                        <i class="fas fa-check"></i>
+                        <i className="fas fa-check"></i>
                         <h5>Completed</h5>
                         <div  className="listitems completedlistitems">
                             {completedTodoList}

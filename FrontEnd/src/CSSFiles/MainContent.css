@@ -34,6 +34,12 @@
     -moz-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
     box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55); */
 }
+.calendarsection:hover{
+    -webkit-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+    -moz-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+    box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+    transition-duration: 0.5s;
+}
 .monthtitle{
     display: flex;
     flex-direction: row;

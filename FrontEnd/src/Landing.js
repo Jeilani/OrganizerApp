@@ -25,10 +25,10 @@ class Landing extends React.Component{
                         </p>
                         <i class="fas fa-laptop fa-10x"></i>
                         <div className="icondiv">
-                            <i class="far fa-calendar-alt fa-10x"></i>
-                            <i class="far fa-clock fa-10x"></i>
-                            <i class="fas fa-cloud-moon fa-10x"></i>
-                            <i class="fas fa-book fa-10x"></i>
+                            <i className="far fa-calendar-alt fa-10x"></i>
+                            <i className="far fa-clock fa-10x"></i>
+                            <i className="fas fa-cloud-moon fa-10x"></i>
+                            <i className="fas fa-book fa-10x"></i>
                         </div>
                     </div>
                     <div className="signup animate">

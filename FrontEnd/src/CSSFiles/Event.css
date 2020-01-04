@@ -18,6 +18,11 @@
         border-radius: 10px;
         background-color: rgb(232, 128, 121);
     }
+    .todaysevents:hover{
+        -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+    }
         .todaysevents h5{
             display: flex;
             width: 40%;
@@ -40,13 +45,14 @@
             .todaysevents button {
                 margin-top: 0;
                 background-color: rgb(49, 127, 196);
-
                 color: white;
-                border-radius: 5px;
+                border-radius: 20px;
+                opacity: 50%;
 
             }
                 .todaysevents button:hover {
                     background-color: rgb(232, 128, 121);
+                    border: none;
 
                 }
         .todaysevents ul{
@@ -71,6 +77,13 @@
         margin-right: 2%;
         border-radius: 10px;
         background-color: rgb(96, 193, 235);
+        transition-duration: .5s;
+    }
+    .upcomingevents:hover{
+        -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+        transition-duration: .5s;
     }
         .upcomingevents h5{
             display: flex;
