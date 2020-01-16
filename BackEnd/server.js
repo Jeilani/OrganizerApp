@@ -8,16 +8,20 @@ const express    		   = require("express"),
       Journal              = require("./models/Journal.js"),
       MiscTodo             = require("./models/MiscTodo.js"),
       User                 = require("./models/User.js"),
-      port			       = process.env.PORT || 3001
+      port			       = process.env.PORT || 3001,
+      config                = require('config')
 
 const dailyRoute = require("./routes/api/daily"),
       eventRoute = require("./routes/api/event"),
       generalTodoRoute = require("./routes/api/general"),
       journalRoute = require("./routes/api/journal"),
       miscTodoRoute = require("./routes/api/misc"),
-      userRoute = require("./routes/api/user")
+      signinRoute = require("./routes/api/signin")
 
-mongoose.connect("mongodb://localhost/OrganizerApi", {
+
+const db = config.get('mongoURI')
+
+mongoose.connect(db, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -40,7 +44,7 @@ app.use("/api/events", eventRoute)
 app.use("/api/general", generalTodoRoute)
 app.use("/api/journal", journalRoute)
 app.use("/api/misc", miscTodoRoute)
-app.use("/api/user", userRoute)
+app.use("/api/account", signinRoute)
 
 mongoose.connect("mongodb://localhost/OrganizerApi", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(()=>{
 console.log("Connected to DB!");
@@ -56,6 +60,6 @@ app.set("view engine", "ejs");
 
 
 app.listen(port , function (req, res) {
-console.log("YelpCamp server has started!");
+console.log("Organizer App Server has started");
 
 });

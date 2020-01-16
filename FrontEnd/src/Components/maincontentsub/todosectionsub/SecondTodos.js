@@ -19,10 +19,16 @@ class SecondTodos extends React.Component{
     handleGeneralSubmit = event =>{
         event.preventDefault()
         this.props.handleSubmit(event, "general", this.state.generalTodoInputValue)
+        this.setState({
+            generalTodoInputValue: ""
+        })
     }
     handleMiscSubmit = event =>{
         event.preventDefault()
         this.props.handleSubmit(event, "misc", this.state.miscTodoInputValue)
+        this.setState({
+            miscTodoInputValue: ""
+        })
     }
 
     handleMiscChange = event => {
@@ -31,12 +37,12 @@ class SecondTodos extends React.Component{
         })
     }
 
-    handleGeneralComplete = id =>{
-        this.props.handlePostAndDelete(id, "put", "general")
+    handleGeneralComplete = (id, completed) =>{
+        this.props.handlePostAndDelete(id, "put", "general", completed)
     }
 
-    handleMiscComplete = id =>{
-        this.props.handlePostAndDelete(id, "put", "misc")
+    handleMiscComplete = (id, completed) =>{
+        this.props.handlePostAndDelete(id, "put", "misc", completed)
     }
 
     render(){
@@ -45,7 +51,7 @@ class SecondTodos extends React.Component{
                 return (
                 <li style = {{textDecoration: "line-through"}} key={todo._id}>{todo.name}
                     <span>
-                        <i onClick={()=>{this.handleGeneralComplete(todo._id)}} className="checkmark fas fa-check"></i>
+                        <i onClick={()=>{this.handleGeneralComplete(todo._id, todo.completed)}} className="checkmark fas fa-check"></i>
                         <i onClick = {()=>{this.props.handlePostAndDelete(todo._id, "delete", "general")}} className="far fa-trash-alt"></i>
                     </span>
                 </li>)
@@ -53,7 +59,7 @@ class SecondTodos extends React.Component{
             return (
                 <li key={todo._id}>{todo.name}
                     <span>
-                        <i onClick={()=>{this.handleGeneralComplete(todo._id)}} className="checkmark fas fa-check"></i>
+                        <i onClick={()=>{this.handleGeneralComplete(todo._id, todo.completed)}} className="checkmark fas fa-check"></i>
                         <i onClick = {()=>{this.props.handlePostAndDelete(todo._id, "delete", "general")}} className="far fa-trash-alt"></i>
                     </span>
                 </li>
@@ -66,7 +72,7 @@ class SecondTodos extends React.Component{
             return(
             <li style = {{textDecoration: "line-through"}} key={todo._id}>{todo.name}
                 <span>
-                    <i onClick={()=>{this.handleMiscComplete(todo._id)}} className="checkmark fas fa-check"></i>
+                    <i onClick={()=>{this.handleMiscComplete(todo._id, todo.completed)}} className="checkmark fas fa-check"></i>
                     <i onClick = {()=>{this.props.handlePostAndDelete(todo._id, "delete", "misc")}} className="far fa-trash-alt"></i>
                 </span>
             </li>)
@@ -74,7 +80,7 @@ class SecondTodos extends React.Component{
             return (
                 <li key={todo._id}>{todo.name}
                     <span>
-                        <i onClick={()=>{this.handleMiscComplete(todo._id)}} className="checkmark fas fa-check"></i>
+                        <i onClick={()=>{this.handleMiscComplete(todo._id, todo.completed)}} className="checkmark fas fa-check"></i>
                         <i onClick = {()=>{this.props.handlePostAndDelete(todo._id, "delete", "misc")}} className="far fa-trash-alt"></i>
                     </span>
                 </li>
@@ -94,7 +100,7 @@ class SecondTodos extends React.Component{
                         onChange={this.handleChange}
                         value = {this.state.generalTodoInputValue}
                         name="generalTodoInputValue"
-                        maxLength = "15"
+                        maxLength = "20"
                     >
                     </input>
                     <button>
@@ -116,7 +122,7 @@ class SecondTodos extends React.Component{
                         onChange={this.handleMiscChange}
                         value = {this.state.MiscTodoInputValue}
                         name="miscTodoInputValue"
-                        maxLength = "15"
+                        maxLength = "20"
                     >
                     </input>
                     <button>

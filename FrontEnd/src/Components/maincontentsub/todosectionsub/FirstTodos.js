@@ -41,11 +41,12 @@ class FirstTodos extends React.Component {
 
 
     render(){
-        const firstMapList = this.props.daily.map(todo=>todo)
-        const firstTodoList = firstMapList.filter(todo=>!todo.completed)
-        const firstCompletedTodoList = firstMapList.filter(todo=>todo.completed)
-        const todoList = firstTodoList.map((t, index)=><li key={index}><b className="timestamp">{this.formatTime(t.date)}</b><span className="liname">{t.name}</span><span className="liicons"><i onClick={()=>{this.handleComplete(t._id)}} className="checkmark fas fa-check"></i></span></li>)
-        const completedTodoList = firstCompletedTodoList.map((t, index)=><li key={index}>{t.name}<i className="far fa-trash-alt"></i></li>)
+        const todoList = this.props.daily.sort((a,b)=>a.date - b.date).filter(todo=>!todo.completed).map((t, index)=>{
+                return (
+                    <li key={index}><b className="timestamp">{this.formatTime(t.date)}</b><span className="liname">{t.name}</span><span className="liicons"><i onClick={()=>{this.handleComplete(t._id)}} className="checkmark fas fa-check"></i><i onClick = {()=>{this.props.handlePostAndDelete(t._id, "delete", "daily")}}className="far fa-trash-alt"></i></span></li>
+                )
+        })
+        const completedTodoList = this.props.daily.filter(todo=>todo.completed).map((t, index)=><li key={index}>{t.name}<i onClick = {()=>{this.props.handlePostAndDelete(t._id, "delete", "daily")}} className="far fa-trash-alt"></i></li>)
 
         return (
             <div className="firstlistcontainer listcontainer">
@@ -62,7 +63,7 @@ class FirstTodos extends React.Component {
                                 value={this.state.todoInputValue}
                                 placeholder="add todo..."
                                 required
-                                maxLength = "15">
+                                maxLength = "20">
                             </input>
                             <input
                                 className="secondInput"

@@ -1,7 +1,8 @@
 .beginning{
-    height: 10%;
+    width: 100%;
 }
 .event{
+    margin-top: 10px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -14,15 +15,15 @@
         justify-content: center;
         width: 33%;
         height: 80%;
-        margin-left: 2%;
+        padding-left: 20px;
         border-radius: 10px;
         background-color: rgb(232, 128, 121);
     }
-    .todaysevents:hover{
-        -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-        -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-        box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-    }
+    /* .todaysevents:hover{
+        -webkit-box-shadow: 7px -5px 5px -4px rgba(255, 255, 255, 0.75);
+        -moz-box-shadow: 7px -5px 5px -4px rgba(255, 255, 255, 0.75);
+        box-shadow: 7px -5px 5px -4px rgba(255, 255, 255, 0.75);
+    } */
         .todaysevents h5{
             display: flex;
             width: 40%;
@@ -37,10 +38,14 @@
             width: 20%;
         }
             .todaysevents input{
+                font-size: .75rem;
                 text-align: center;
                 background-color: inherit;
                 outline: none;
                 border: none;
+            }
+            .todaysevents .secondInput{
+                margin-left: 25px;
             }
             .todaysevents button {
                 margin-top: 0;
@@ -48,23 +53,48 @@
                 color: white;
                 border-radius: 20px;
                 opacity: 50%;
+                font-size: .75rem;
 
             }
                 .todaysevents button:hover {
                     background-color: rgb(232, 128, 121);
-                    border: none;
+                    font-size: .75rem;
+                    border: 1px solid transparent;
 
                 }
         .todaysevents ul{
             width: 40%;
             font-size: 0.75rem;
         }
+
         .middleiconcontainer{
             display: flex;
             justify-content: center;
             width: 33%;
+            padding-right: 6%;
         }
+
+        .logoutcontainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 33%;
+        }
+            .logoutcontainer button{
+                height: 100%;
+                border: none;
+                border-radius: 10px;
+                margin: 10px;
+            }
+                #yesbutton:hover{
+                    background-color: red;
+                }
+                #nobutton:hover{
+                    background-color: green;
+                }
         .middleiconcontainer i{
+            margin-top: 10px;
             color: green;
             z-index: 0;
         }
@@ -74,24 +104,53 @@
         justify-content: center;
         width: 33%;
         height: 80%;
-        margin-right: 2%;
         border-radius: 10px;
         background-color: rgb(96, 193, 235);
         transition-duration: .5s;
     }
-    .upcomingevents:hover{
-        -webkit-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-        -moz-box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
-        box-shadow: 7px -5px 5px -4px rgba(0,0,0,0.75);
+    /* .upcomingevents:hover{
+        -webkit-box-shadow: 7px -5px 5px -4px rgba(20, 19, 19, 0.75);
+        -moz-box-shadow: 7px -5px 5px -4px rgba(10, 10, 10, 0.75);
+        box-shadow: 7px -5px 5px -4px rgba(17, 16, 16, 0.75);
         transition-duration: .5s;
-    }
+    } */
         .upcomingevents h5{
             display: flex;
-            width: 50%;
+            width: 40;
             justify-content: center;
         }
         .upcomingevents ul{
             font-size: .75rem;
-            width: 50%;
+            width: 60%;
+        }
+        #datepartevent{
+            font-style: italic;
+            color: navy;
         }
 
+
+
+
+@media only screen and (max-width: 1200px) {
+    .event{
+        flex-wrap: wrap;
+    }
+    .middleiconcontainer, .logoutcontainer{
+        order: -1;
+        width: 100%;
+    }
+
+    .todaysevents, .upcomingevents {
+        width: 50%;
+        margin-top: 50px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .todaysevents, .upcomingevents {
+        width: 80%;
+        margin-top: 50px;
+        height: 100%;
+    }
+}

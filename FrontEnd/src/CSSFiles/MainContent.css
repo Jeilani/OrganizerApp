@@ -1,51 +1,56 @@
 
-
 .MainContent{
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     align-items: center;
-    height: 80%;
-    width: 100vw;
+
 }
 
 .middle{
     display: flex;
+    box-sizing: border-box;
+    flex-basis: 800px;
+    height: 600px;
+    width: 600px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    justify-self: center;
 }
     .middle hr{
         width: 90%;
     }
 
 .calendarsection{
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 40vw;
-    width: 50vw;
+    height: 100%;
+    width: 100%;;
     box-sizing: border-box;
-    padding: 0rem 10rem 2rem;
+    padding: 0 30px 30px;
     background-color: tan;
     border-radius: 1%;
     /* -webkit-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
     -moz-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
     box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55); */
 }
-.calendarsection:hover{
-    -webkit-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
-    -moz-box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
-    box-shadow: 17px -8px 25px -6px rgba(0,0,0,0.55);
+/* .calendarsection:hover{
+    -webkit-box-shadow: 17px -8px 25px -6px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 17px -8px 25px -6px rgba(2, 2, 2, 0.55);
+    box-shadow: 17px -8px 25px -6px rgba(8, 8, 8, 0.55);
     transition-duration: 0.5s;
-}
+} */
 .monthtitle{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 45vw;
+    width: 100%;
+    font-size: .75rem;
 
 }
         .fa-arrow-right{
@@ -60,9 +65,9 @@
             margin-right: 5px;
         }
 
-        .fa-arrow-right:hover, .fa-arrow-left:hover{
+        /* .fa-arrow-right:hover, .fa-arrow-left:hover{
             color: gray;
-        }
+        } */
 
 
         #month{
@@ -73,12 +78,13 @@
         .monthtitle ul{
             align-self: flex-end;
             width: 60%;
-            height: 75%;
+            height: 80%;
             list-style: none;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: flex-end;
+            font-size: .5rem;
         }
         .monthtitle h2{
             display: flex;
@@ -99,7 +105,6 @@
                 #dateicon{
                     color: rgba(0, 0, 0, 0%);
                     border-bottom: 1px solid red;
-                    width: 10px;
                     margin-right: 10px;
                 }
                     .legendevent{
@@ -107,6 +112,9 @@
                     }
                     .legendjournal{
                         color: rgb(0, 0, 153);
+                    }
+                    .legendschedule {
+                        color: green;
                     }
                 .monthtitle i{
                     margin-right: 10px;
@@ -125,7 +133,7 @@
 .weekdatesection{
     display: flex;
     flex-direction: row;
-    width: 45vw;
+    width: 100%;
     height: 100%;
     justify-content: space-around;
     border-left: 1px solid gray;
@@ -178,7 +186,8 @@
         flex-direction: column;
         margin: 0;
         padding: 0;
-        font-size: 10px;
+        font-size: .75rem;
+        border: 1px solid black;
     }
         .dateIcon .fa-book{
             margin: 0;
@@ -193,13 +202,10 @@
         }
 
 
-    .dates:hover{
+     .dates:hover{
         display: flex;
         border: none;
-        width: 250%;
-        padding: 80% 0;
-        font-weight: bold;
-        font-size: 1.2rem;
+        color: blue;
         transition-duration: 0.5s;
 
     }
@@ -228,3 +234,68 @@
 .clearIcon{
     visibility: hidden;
 }
+
+@media only screen and (max-width: 1449px) {
+
+    .middle{
+        font-size: .6rem;
+    }
+}
+
+@media only screen and (max-width: 1249px) {
+
+    .MainContent{
+
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+
+    }
+
+    .middle{
+        display: flex;
+        width: 80%;
+        order: -1;
+        margin-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-self: center;
+        margin-bottom: 10px;
+    }
+}
+
+
+@media only screen and (max-width: 1200) {
+    .middle {
+        font-size: .75rem;
+    }
+    .dayoftheweek{
+        font-size: .1rem!important;
+    }
+}
+
+@media only screen and (max-width: 879px) {
+    .MainContent{
+        display: flex;
+        font-size: .8rem;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+
+    }
+
+    .middle{
+        display: flex;
+        width: 80%;
+        margin-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-self: center;
+    }
+}
+

@@ -5,15 +5,40 @@ class JournalSection extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            ReadMode: false,
-            month: "",
-            inputValue: ""
+            ReadMode: true,
+            inputValue: "",
+            stateJournalName: this.props.journal.name,
+            alreadySubmitted: false
         }
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if (nextProps.journal.name === "nothing!@#" && !(prevState.stateJournalName === "nothing!@#")){
+            return {
+                inputValue: "",
+                stateJournalName: nextProps.journal.name
+            }
+        } else if (!(nextProps.journal.name === prevState.stateJournalName)){
+            return {
+                inputValue: nextProps.journal.name,
+                stateJournalName: nextProps.journal.name
+            }
+        }
+    }
+
+    handleSubmit = event =>{
+        if (!(this.state.stateJournalName === "nothing!@#")){
+            console.log("updatejournal")
+            this.props.updateJournal(this.props.journal._id, this.state.inputValue)
+        }
+        else if (this.state.stateJournalName === "nothing!@#"){
+            this.props.handleSubmit(event, "journal", this.state.inputValue)
+        }
+        this.handleReadMode()
 
     }
 
     handleInputChange = event=>{
-        
         this.setState({
             inputValue: event.target.value
         })
@@ -22,9 +47,9 @@ class JournalSection extends React.Component{
     renderPageType = () =>{
         if (this.state.ReadMode){
             return(
-            <form className="journalForm">
+            <form onSubmit = {()=>{this.handleSubmit()}}className="journalForm">
                 <textarea
-                    readOnly="true"
+                    readOnly={true}
                     value={this.state.inputValue}
                     onChange={this.handleInputChange}
                 >
@@ -34,7 +59,7 @@ class JournalSection extends React.Component{
         }
         else {
             return(
-            <form className="journalForm">
+            <form onSubmit = {()=>{this.handleSubmit()}} className="journalForm">
                 <textarea
                     placeholder="type here.."
                     value={this.state.inputValue}
@@ -62,9 +87,10 @@ class JournalSection extends React.Component{
             )
          }
              return(
-              <i onClick={()=>{this.handleReadMode()}}className="fas fa-check"></i>
+              <i onClick={()=>{this.handleSubmit()}}className="fas fa-check"></i>
              )
     }
+
 
     render(){
         return(
@@ -78,7 +104,7 @@ class JournalSection extends React.Component{
                         </header>
                         {this.renderPageType()}
                         <footer>
-                            {this.handleIcon()}
+                        {this.handleIcon()}
                         </footer>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ const express = require("express"),
       bodyParser = require("body-parser"),
       router = express.Router({mergeParams: true});
 
+const auth = require("../../middleware/auth")
 const DailyTodo = require("../../models/DailyTodo")
 
 //GET api/daily
@@ -14,14 +15,16 @@ router.get("/", (req, res)=>{
     })
 })
 
-router.get("/:id/:idtwo/:idthree", (req, res)=>{
+router.get("/:id/:idtwo/:idthree/:userId", (req, res)=>{
     const newDate = new Date(req.params.id, req.params.idtwo, req.params.idthree)
     DailyTodo.find({
         date: {
               $gte: new Date(new Date(newDate).setHours(00, 00, 00)),
               $lt: new Date(new Date(newDate).setHours(23, 59, 59))
-               }
-        })
+               },
+        userId: req.params.userId
+
+        }).sort({date: 1})
     .then(daily =>{
         res.json(daily)
     })
@@ -30,7 +33,8 @@ router.get("/:id/:idtwo/:idthree", (req, res)=>{
 router.post("/", (req, res)=>{
     const newDaily = new DailyTodo({
         name: req.body.name,
-        date: req.body.date
+        date: req.body.date,
+        userId: req.body.userId
     })
 
     newDaily.save().then(item=>{

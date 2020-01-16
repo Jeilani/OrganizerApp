@@ -19,8 +19,8 @@ ul{
 .WholePage{
     display: flex;
     flex-direction: column;
-    height: 110vh;
-    width: 100vw;
+
+
 }
 
 #container{
@@ -51,8 +51,4 @@ ul{
     padding: 10px;
     border-radius: 50%;
     z-index: -1;
-}
-
-.zoom:hover{
-    height: 5vh;
 }

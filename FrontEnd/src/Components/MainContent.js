@@ -72,24 +72,77 @@ class MainContent extends React.Component{
     }
 
     load = stateName => {
-        let URL = stateName + "/" + this.state.clickedDate.getFullYear() + "/" +  this.state.clickedDate.getMonth() + "/" +  this.state.clickedDate.getDate()
-        fetch("/api/" + URL)
-        .then(res=>{
-            if(!res.ok){
-                throw Error
-            }
-            else return res.json()
-        })
-        .then(todos=>{
-            this.setState({
-                [stateName]: todos
+        if (stateName === "journal"){
+            let URL = stateName + "/" + this.state.clickedDate.getFullYear() + "/" +  this.state.clickedDate.getMonth() + "/" +  this.state.clickedDate.getDate() + "/" + this.props.userId
+            fetch("/api/" + URL)
+            .then(res=>{
+                if(!res.ok){
+                    throw Error
+                }
+                else return res.json()
             })
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+            .then(todo=>{
+                if (todo.name === "nothing"){
+                    this.setState({
+                        [stateName]: {
+                            name: "nothing!@#"
+                        }
+                    })
+                } else {
+                    this.setState({
+                        [stateName]: {...todo}
+                    })
+                }
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+
+        } else {
+            let URL = stateName + "/" + this.state.clickedDate.getFullYear() + "/" +  this.state.clickedDate.getMonth() + "/" +  this.state.clickedDate.getDate() + "/" + this.props.userId
+            fetch("/api/" + URL)
+            .then(res=>{
+                if(!res.ok){
+                    throw Error
+                }
+                else return res.json()
+            })
+            .then(todos=>{
+                const newtodos = todos.sort((a,b)=>{
+                    return a.date - b.date
+                })
+                this.setState({
+                    [stateName]: newtodos
+                })
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
     }
 
+    updateJournal = (id, inputValue) =>{
+        fetch("api/journal/" + id, {
+            method: 'PUT',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                name: inputValue
+                })
+            })
+            .then(res=>{
+                return res.json()
+            })
+            .then(todo=>{
+                this.setState({
+                    journal: {...todo}
+                })
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
 
     handleSubmit = (event, stateName, inputValue) =>{
         let hour;
@@ -103,12 +156,14 @@ class MainContent extends React.Component{
         let smalldate = this.state.clickedDate.getDate()
         let newObject = {
             name: inputValue,
-            date: new Date (year, month, smalldate)
+            date: new Date (year, month, smalldate),
+            userId: this.props.userId
         }
         if (stateName === "daily"){
             newObject = {
                 name: inputValue,
-                date: new Date (year, month, smalldate, hour,  minutes)
+                date: new Date (year, month, smalldate, hour,  minutes),
+                userId: this.props.userId
             }
         }
 
@@ -127,6 +182,12 @@ class MainContent extends React.Component{
         })
         .then(todo=>{
             this.setState(prevState=>{
+                if (stateName === "journal"){
+                    return {
+                        journal: todo
+                    }
+                }
+
                 return {
                     [stateName]: [...prevState[stateName], todo]
                 }
@@ -138,44 +199,17 @@ class MainContent extends React.Component{
     }
 
 //used to be handleDailyDelete
-    handlePost = (id, stateName)=>{
-        fetch("/api/" + stateName + "/" + id, {
-            method: 'put',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify({
-                completed: true
-                })
-            })
-            .then(res=>{
-                if(!res.ok){
-                    throw Error
-                }
-                return res.json()
-            })
-            .then(todos=>{
-                this.setState(prevState=>{
-                let newArray = prevState[stateName].filter(todo=>!(todo._id === id))
-                    return {
-                        [stateName]: [newArray, todos]
-                    }
-                })
-            })
-            .catch(err=>{
-                console.log(err)
-            })
-    }
-    handlePostAndDelete = (id, methodType, stateName) =>{
+
+    handlePostAndDelete = (id, methodType, stateName, completedd) =>{
+        console.log(methodType)
         if (methodType === "put"){
-            console.log("put fetch")
                 fetch("/api/" + stateName + "/" + id, {
-                method: 'put',
+                method: methodType,
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 }),
                 body: JSON.stringify({
-                    completed: true
+                    completed: !completedd
                     })
                 })
                 .then(res=>{
@@ -188,18 +222,16 @@ class MainContent extends React.Component{
                     this.setState(prevState=>{
                     let newArray = prevState[stateName].filter(todo=>!(todo._id === id))
                         return {
-                            [stateName]: [newArray, todos]
+                            [stateName]: [...newArray, todos]
                         }
                     })
                 })
                 .catch(err=>{
                     console.log(err)
                 })
-
         } else if (methodType === "delete") {
-            console.log("delete method")
             fetch("/api/" + stateName + "/" + id, {
-                method: 'delete',
+                method: methodType,
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 })
@@ -208,13 +240,13 @@ class MainContent extends React.Component{
                 if(!res.ok){
                     throw Error
                 }
-                return res.json()
+                return
             })
-            .then(todos=>{
+            .then(()=>{
                 this.setState(prevState=>{
                     let newArray = prevState[stateName].filter(todo=>!(todo._id === id))
                     return {
-                        [stateName]: [newArray]
+                        [stateName]: [...newArray]
                     }
                 })
 
@@ -236,6 +268,7 @@ class MainContent extends React.Component{
         }
         )
     }
+
 
     changeMonthRight = event =>{
         let month = this.state.time.getMonth()
@@ -305,16 +338,14 @@ class MainContent extends React.Component{
             })
     }
 
-
-
-    callAllAPIS = () => {
-        this.load("daily")
-        this.load("events")
-        this.load("general")
-        this.load("journal")
-        this.load("misc")
-        this.load("general")
+    callAllAPIS = async() => {
+        await this.load("daily")
+        await this.load("events")
+        await this.load("general")
+        await this.load("misc")
+        await this.load("journal")
     }
+
     componentDidMount(){
         this.callAllAPIS()
         this.pushDay(this.DaysOfTheWeek)
@@ -322,28 +353,20 @@ class MainContent extends React.Component{
         this.setState({
             daysOfTheWeek: this.DaysOfTheWeek.splice()
         })
-
     }
 
-    handleClickedDate = (element) => {
+    handleClickedDate = async element => {
         let year = this.state.time.getFullYear()
         let month = this.state.time.getMonth()
         let day = element;
-        this.setState({
+        await this.setState({
             clickedDate: new Date(year, month, day)
-        })
-        this.load("daily")
-        this.load("events")
-        this.load("general")
-        this.load("journal")
-        this.load("misc")
-        this.load("general")
+            })
+        this.callAllAPIS()
     }
 
-
-
-
     render(){
+        console.log(this.props.userId)
         this.pushDay(this.DaysOfTheWeek)
         this.pushSixthDay(this.DaysOfTheWeek)
         const newDayList = this.DaysOfTheWeek.map((day, index)=> <DaysOfTheWeek monthObjects={this.state.monthObjects} key={index} Date = {this.state.time} data={day} handleClickedDate={this.handleClickedDate} clickedDate={this.state.clickedDate}/>)
@@ -355,6 +378,9 @@ class MainContent extends React.Component{
                      events = {this.state.events}
                      handleSubmit = {this.handleSubmit}
                      handlePostAndDelete = {this.handlePostAndDelete}
+                     months = {this.months}
+                     logout={this.props.logout}
+                     userId = {this.props.userId}
                     />
                 </div>
                 <div className="MainContent">
@@ -365,17 +391,22 @@ class MainContent extends React.Component{
                         handleSubmit = {this.handleSubmit}
                         handlePostAndDelete = {this.handlePostAndDelete}
                         daily = {this.state.daily}
+                        userId= {this.state.userId}
                     />
                     <CalendarSection
                         newDayList={newDayList}
                         changeMonthLeft={this.changeMonthLeft}
                         changeMonthRight={this.changeMonthRight}
                         months = {this.months}
-                        date = {this.state.time}
+                        clickedDate = {this.state.clickedDate}
+                        date = {this.time}
 
                     />
                     <JournalSection
                         clickedDate = {this.state.clickedDate}
+                        handleSubmit = {this.handleSubmit}
+                        updateJournal = {this.updateJournal}
+                        journal = {this.state.journal}
                     />
                 </div>
             </div>

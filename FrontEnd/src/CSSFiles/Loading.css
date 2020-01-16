@@ -1,0 +1,26 @@
+
+.loadingpage{
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+
+
+.loadingpage i{
+    color: green;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}

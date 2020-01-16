@@ -1,6 +1,8 @@
 const express = require("express"),
       router = express.Router()
 
+const auth = require("../../middleware/auth")
+
 const GeneralTodo = require("../../models/GeneralTodo")
 
 router.get("/", (req, res)=>{
@@ -10,17 +12,21 @@ router.get("/", (req, res)=>{
     })
 })
 
-router.get("/:id/:idtwo/:idthree", (req, res)=>{
-    GeneralTodo.find()
+router.get("/:id/:idtwo/:idthree/:userId", (req, res)=>{
+    GeneralTodo.find({
+        userId: req.params.userId
+    })
     .then(todo =>{
         res.json(todo)
     })
 })
 
 router.post("/", (req, res)=>{
+    console.log("happening")
     const newGeneralTodo = new GeneralTodo({
         name: req.body.name,
-        date: req.body.date
+        date: req.body.date,
+        userId: req.body.userId
     })
 
     newGeneralTodo.save().then(todo=>{

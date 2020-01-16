@@ -4,30 +4,44 @@ const express = require("express"),
 const Event = require("../../models/Event")
 const todaysDate = new Date()
 
-router.get("/", (req, res)=>{
-    Event.find()
-    .then(todo =>{
-        res.json(todo)
+router.get("/:userId", (req, res)=>{
+    const todaysDate = new Date()
+    const year = todaysDate.getFullYear()
+    const month = todaysDate.getMonth() + 2
+    const laterDate = new Date(year, month, 27)
+    Event.find({
+        date: {
+              $gte: new Date(new Date(todaysDate).setHours(00, 00, 00)),
+              $lt: new Date(new Date(laterDate).setHours(23, 59, 59))
+               },
+        userId:req.params.userId
+        })
+    .then(todos =>{
+        console.log(todos)
+        res.json(todos)
     })
 })
 
-router.get("/:id/:idtwo/:idthree", (req, res)=>{
+router.get("/:id/:idtwo/:idthree/:userId", (req, res)=>{
     const newDate = new Date(req.params.id, req.params.idtwo, req.params.idthree)
     Event.find({
         date: {
               $gte: new Date(new Date(newDate).setHours(00, 00, 00)),
               $lt: new Date(new Date(newDate).setHours(23, 59, 59))
-               }
+               },
+        userId: req.params.userId
         })
     .then(daily =>{
         res.json(daily)
     })
 })
 
+
 router.post("/", (req, res)=>{
     const newEvent = new Event({
         name: req.body.name,
-        date: req.body.date
+        date: req.body.date,
+        userId: req.body.userId
     })
 
     newEvent.save().then(todo=>{

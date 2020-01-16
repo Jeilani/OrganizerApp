@@ -1,6 +1,8 @@
 const express = require("express"),
       router = express.Router()
 
+const auth = require("../../middleware/auth")
+
 const MiscTodo = require("../../models/MiscTodo")
 
 router.get("/", (req, res)=>{
@@ -10,8 +12,8 @@ router.get("/", (req, res)=>{
     })
 })
 
-router.get("/:id/:blah/:blah", (req, res)=>{
-    MiscTodo.find()
+router.get("/:id/:blah/:blah/:userId", (req, res)=>{
+    MiscTodo.find({userId: req.params.userId})
     .then(todo =>{
         res.json(todo)
     })
@@ -21,7 +23,8 @@ router.get("/:id/:blah/:blah", (req, res)=>{
 router.post("/", (req, res)=>{
     const newMiscTodo = new MiscTodo({
         name: req.body.name,
-        date: req.body.date
+        date: req.body.date,
+        userId: req.body.userId
     })
 
     newMiscTodo.save().then(todo=>{
