@@ -1,11 +1,4 @@
 # OrganizerApp
-This app was created to model an easy and intuitive way to organizer one's day. I set it up to sync the Journal, "today's events", with the clicked Date. 
-
-
-
-
-
-# Project Title
 This app was created to model an easy and intuitive way to organizer one's day. I set it up to sync the Journal, "today's events", with the clicked Date. Any time the user clicks a date on the calendar, the rest of the components update themsleves based on the clicked date.
 The backend uses a date range from the req.params to search through the MongoDB and retrieve the data. 
 
@@ -21,22 +14,14 @@ $ git clone <repo URL>
 Install npm (Node package manager) on your computer
 Here's a great tutorial: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
-Run node server.js in the main respo
+Run node server.js in the main directory
 
-Open a new terminal and run npm start in the client folder to start the front-end which will be on the localhost: 3000 in your browswer 
+Open a new terminal and run npm start in the client folder to start the front-end which will be on the localhost: 3000 in your browser 
 
 
 Open http://localhost:3000 to view it in the browser.
 
 
-# Running the tests
-Give an example
-And coding style tests
-Explain what these tests test and why
-
-Give an example
-Deployment
-Add additional notes about how to deploy this on a live system
 
 # Built With
 React
@@ -53,4 +38,4 @@ Jeilani Mohamed
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
 # Acknowledgments
-Creators of React
+Creators of React and all the dependencies
